@@ -1,0 +1,481 @@
+<header>
+  <div class="container">
+    <div class="header-main">
+      <div class="header-logo">
+        <img src="../assets/images/logo.jpg" />
+      </div>
+      <div class="header-list">
+        <ul>
+          <li>No fee to present your case</li>
+          <li>Choose from lawyers in your area</li>
+          <li>A 100% Confidential service</li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="main-content">
+    <div class="container">
+      <div class="content-title">
+        <h2>
+          Find a Lawyer for your Legal Issue
+          <span>Fast, Free and Confidential</span>
+        </h2>
+      </div>
+      <div class="form-main">
+        <div class="col-md-6">
+
+          <div class="form-dv">
+            <div class="form-row">
+              <label>Enter Zip Code or city: </label>
+              <div class="text-box-main zip-code-box">
+                <input type="text" autocomplete class="form-input-box" placeholder="Do not have to be Where you live"
+                  [config]="config2" [items]="items2" (inputChangedEvent)="onInputChangedEvent($event)"
+                  (selectEvent)="onSelect($event)">
+                <span>1</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Choose a category: </label>
+              <div class="text-box-main">
+                <select class="form-input-box" (change)="onSelectCategory($event.target.value)"
+                  [(ngModel)]="selectedLegalCategory.id">
+                  <option *ngFor="let category of availableLegalCategories" value={{category.id}}>
+                    {{category.name}}
+                  </option>
+                </select>
+
+                <span>2</span>
+              </div>
+            </div>
+            <div class="find-category">
+              Can't find your category? <a href="#" data-toggle="modal" data-target="#otherCategoriesModal">Click
+                here</a>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="review-sec">
+            <div class="review-title">Clients review LegalMatch lawyers</div>
+            <div class="review-main">
+              <div class="review-item"  *ngFor="let item of clientReviews">
+                <div class="user-review-img">
+                  <img src={{item.img}} />
+                  <div class="review-user-name">
+                    {{item.name}}
+                    <span>{{item.address}}</span>
+                  </div>
+                </div>
+                <div class="review-detail">
+                  <div class="review-detail-title">
+                    <span> {{item.type}}</span>
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                  <p class="review-detail-description">
+                    {{item.text}}
+                  </p>
+                  <div class="review-detain-btn" ><a href="#" (click)="hello(item)" data-toggle="modal"
+                      data-target="#reviewModal" >Read
+                      Review</a><span   class="btn-icon"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="reviewModal" class="modal fade review-modal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">CLIENT REVIEWS</h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="user-review-img">
+              <img src="{{selectedClientReview?selectedClientReview.img:''}}" />
+              <div class="review-user-name">
+                {{selectedClientReview?selectedClientReview.name:''}}
+                <span> {{selectedClientReview?selectedClientReview.address:''}}</span>
+                <p> {{selectedClientReview?selectedClientReview.type:''}}</p>
+              </div>
+            </div>
+            <div class="review-detail-title">
+              <span>Rating (29 Users)</span>
+              <ul>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+              </ul>
+            </div>
+            <!-- <p>Some text in the modal.</p> -->
+            <div class="reviewModalRating">
+              <div>
+                <div class="pull-left">
+                  <b>Overall</b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b> Responded in a timely ;manner</b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b> Answered questions clearly
+                  </b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b>Understood needs</b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b> Gave complete and clear information
+                  </b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b> Knowledgeable in legal area</b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b> Good value for money</b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b> Would hire again
+                  </b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div>
+                <div class="pull-left">
+                  <b> Would recommend to friend</b>
+                </div>
+                <div class="pull-right">
+                  <div class="review-detail-title">
+                    <ul>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                      <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+
+            </div>
+            <div class="review-detail-title border-0">
+
+              <ul class="padding-0">
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+                <li><a href="#"><img src="../assets/images/star.png" /></a></li>
+              </ul>
+              <span> by Dexter Marchal,06/10/2016</span>
+            </div>
+            Deb did a great job,Got my bench warrant set aside ... was sure I was going to jail... phew. Judge seemed to
+            respect her and I got what I
+            <p></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="otherCategoriesModal" class="modal fade otherCategoriesModal" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">OTHER CATEGORIES</h4>
+            <span>Choose the categories that best fits your case </span>
+          </div>
+          <div class="modal-body">
+            <div class="popup-scroll">
+              <div class="col-md-6">
+                <a href="#">Abuse (Child ,Domestic, Sexual)</a>
+                <a href="#">Agencies & Administration</a>
+                <a href="#">Automobile (DUI, Crimes, Speeding)</a>
+                <a href="#">Automobiles( Accidents, Insurance )</a>
+                <a href="#">Banking ( Business, Consumer )</a>
+                <a href="#">Bars & Restaurents</a>
+                <a href="#">Business, Formation & Dissolution</a>
+                <a href="#">Children(Adoption,Custody,Support)</a>
+                <a href="#">Class Actions(Bad Drugs, Products)</a>
+                <a href="#">Commercial Law and Constracts</a>
+                <a href="#">Commercial Real Estate</a>
+                <a href="#">Constitutional Law</a>
+                <a href="#">Construction (Disputes,Liens)</a>
+                <a href="#">Categories item Here</a>
+
+              </div>
+              <div class="col-md-6">
+                <a href="#">Loremipsum Dolorsitamet</a>
+                <a href="#">Lonsectetur Scingelit (Baseererkj, Mereit)</a>
+                <a href="#">Miam Euvelit</a>
+                <a href="#">Mempor Auctor (Estiarma , Toerusie)</a>
+                <a href="#">Nisultricies Dictumest</a>
+                <a href="#">Ntfring Sodalelit (Aeeticl Restoustoust)</a>
+                <a href="#">Ntvarious Lectus & Congue</a>
+                <a href="#">Pellentesque</a>
+                <a href="#">Rigula Aliquamattis (Nestusotu, Wewreist)</a>
+                <a href="#">Set Tigulempor</a>
+                <a href="#">Sehicula Sedisitamet</a>
+                <a href="#">Seque Nesturre</a>
+                <a href="#">Tillis Gaurissed</a>
+                <a href="#">Tempor Auctor (Estiarma, Toeruslej)</a>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div id="fammilyIssueModal" class="modal fade client-review-model" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">
+            <p class="fammilyIssueModelTitle"><span class="circle-list">3</span> Which
+              <b>{{selectedCategoryName?selectedCategoryName:'abc'}} law </b>issue(s) apply
+              to your case</p>
+            <div>
+              <div class="col-md-6">
+                <div class="checkbox-main">
+                  Adoptions
+                  <input type="checkbox" id="1">
+                  <label class="checkmark" for="1"></label>
+                </div>
+                <div class="checkbox-main">
+                  Guardianship
+                  <input type="checkbox" id="2">
+                  <label class="checkmark" for="2"></label>
+                </div>
+                <div class="checkbox-main">
+                  Child custody and visitation
+                  <input type="checkbox" id="3">
+                  <label class="checkmark" for="3"></label>
+                </div>
+                <div class="checkbox-main">
+                  Paternity
+                  <input type="checkbox" id="4">
+                  <label class="checkmark" for="4"></label>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="checkbox-main">
+                  Child Support
+                  <input type="checkbox" id="5">
+                  <label class="checkmark" for="5"></label>
+                </div>
+                <div class="checkbox-main">
+                  Seperations
+                  <input type="checkbox" id="6">
+                  <label class="checkmark" for="6"></label>
+                </div>
+                <div class="checkbox-main">
+                  Divorce
+                  <input type="checkbox" id="7">
+                  <label class="checkmark" for="7"></label>
+                </div>
+                <div class="checkbox-main">
+                  Spousal Support or Alimony
+                  <input type="checkbox" id="8">
+                  <label class="checkmark" for="8"></label>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="bottom-btn">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Find a lawyer now</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+</section>
+<footer class="main-footer">
+  <div class="container">
+    <div class="col-md-3 col-sm-3">
+      <div class="footer-logo"><img src="../assets/images/footer-logo-1.png" /></div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="footer-list">
+        <ul>
+          <li><a href="#">User Agreement</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Site Map</a></li>
+        </ul>
+      </div>
+      <div class="footer-copyright">
+        <p>copyright 1999-2016 Legal match. All rights resereved. Legal Match*,</p>
+        the Legal Match logo, and the tradedress are trademarks of LegalMatch. Patents Pending.
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3">
+      <div class="footer-logo text-center">
+        <img src="../assets/images/footer-logo-2.png" />
+        <img src="../assets/images/footer-logo-3.png" />
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- <form autocomplete="off">
+    
+    <input autocomplete [config]="config2" [items]="items2"
+          (inputChangedEvent)="onInputChangedEvent($event)"
+          (selectEvent)="onSelect($event)">
+
+        
+    </form>
+    <select [(ngModel)]="selectedLegalCategory.id">         
+        <option *ngFor="let category of availableLegalCategories" value= {{category.id}}>
+           {{category.name}}
+        </option>
+      </select> -->
